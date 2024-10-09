@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>
         Вселенная Галковского
     </title>
@@ -24,7 +25,7 @@
         </div>
     </div>
 
-    <nav>
+    <nav class="menu_header_box">
         <ul class="menu_box">
             <li class="menu_button"><a href="#">Биография</a></li>
             <li class="menu_button"><a href="#">Книги и сборники</a></li>
@@ -42,61 +43,112 @@
 
     <div class="sidebar"></div>
 
-    <div class="content">
+    <div class="page_content">
 
         <div class="main_content">
 
-            <form class="main_content_search" method="get" autocomplete="on">
-                <label for="search"> </label>
-                <textarea name="search" id="search"
+            <form class="main_content_search_area" method="get" autocomplete="on">
+                <label for="search"> Поиск</label>
+                <textarea class="main_content_search"
+                          name="search" id="search"
                           placeholder="Поиск по первому совпадению">
+
                     </textarea>
-                <input type="submit" value="Найти">
+                <input placeholder="Поиск по ключевым словам" type="submit" value="Найти">
             </form>
 
-            <div class="table_box">
+            <div class="grid_table">
 
-                <div class='table_header'>
-                </div>
-                <div>
-                </div>
+                <div class="grid_table_header">Yearly Income Statements 2009 - 2012</div>
+                <div class="grid_column_name"> In millions of USD (except for per share items)</div>
+                <div class="grid_column_name"> 52 weeks ending 2012-09-29</div>
+                <div class="grid_column_name">52 weeks ending 2011-09-24</div>
+                <div class="grid_column_name">52 weeks ending 2010-09-25</div>
+                <div class="grid_column_name">52 weeks ending 2009-09-26</div>
 
+                <div class="grid_row_name">Revenue</div>
+                <div class="grid_row_data_colored">156,508.00</div>
+                <div class="grid_row_data_colored">108,249.00</div>
+                <div class="grid_row_data_colored">65,225.00</div>
+                <div class="grid_row_data_colored">42,905.00</div>
 
+                <div class="grid_row_name">Other Revenue, Total</div>
+                <div class="grid_row_data">-</div>
+                <div class="grid_row_data">-</div>
+                <div class="grid_row_data">-</div>
+                <div class="grid_row_data">-</div>
+
+                <div class="grid_row_name">Total Revenue</div>
+                <div class="grid_row_data_colored">156,508.00</div>
+                <div class="grid_row_data_colored">108,249.00</div>
+                <div class="grid_row_data_colored">65,255.00</div>
+                <div class="grid_row_data_colored">42,905.00</div>
+
+                <div class="grid_row_name">Cost of Revenue, Total</div>
+                <div class="grid_row_data">87,846.00</div>
+                <div class="grid_row_data">64,431.00</div>
+                <div class="grid_row_data">39,541.00</div>
+                <div class="grid_row_data">25,683.00</div>
+
+                <div class="grid_row_name">Gross Profit</div>
+                <div class="grid_row_data_colored">68,662.00</div>
+                <div class="grid_row_data_colored">43,818.00</div>
+                <div class="grid_row_data_colored">25,684.00</div>
+                <div class="grid_row_data_colored">17,222.00</div>
+
+                <div class="grid_row_name">Selling/General/Admin,<br/>Expenses, Total</div>
+                <div class="grid_row_data">10,040.00</div>
+                <div class="grid_row_data">7,599.00</div>
+                <div class="grid_row_data">5,517.00</div>
+                <div class="grid_row_data">4,149.00</div>
+
+                <div class="grid_row_name">Research & Development</div>
+                <div class="grid_row_data_colored">3,381.00</div>
+                <div class="grid_row_data_colored">2,429.00</div>
+                <div class="grid_row_data_colored">1,782.00</div>
+                <div class="grid_row_data_colored">1,333.00</div>
+
+                <div class="grid_row_name">Total Operating Expense</div>
+                <div class="grid_row_data">101,267.00</div>
+                <div class="grid_row_data">74,459.00</div>
+                <div class="grid_row_data">46,840.00</div>
+                <div class="grid_row_data">31,165.00</div>
 
             </div>
 
 
         </div>
 
-        <aside>
-            <section class="aside_news">
+        <aside class="main_aside_group">
+            <section class="aside_news_section">
                 <div class="aside_news_title">
                     <h2><em>Последние новости, видео, посты</em></h2>
                 </div>
                 <ul class="aside_news_box">
                     <li class="aside_news_subelement">
-                        <a href="//t.me/galkovskygram/594">
-                            <img src="imgs/Распутин.webp" alt="Фото распутина">
-                            Почему на западе так носятся с Распутиным
+                        <a class="aside_news_subelement_ref" href="//t.me/galkovskygram/594">
+                            <img class="aside_news_image" src="imgs/Распутин.webp" alt="Фото распутина">
+                            <span class="aside_news_comment">  Почему на западе так носятся с Распутиным</span>
                         </a>
                     </li>
                     <li class="aside_news_subelement">
-                        <a href="https://t.me/galkovskygram/592">
-                            <img src="imgs/бесконечный%20тупик.webp" alt="Фото книги">
-                            Набоковские фрагменты "Бесконечного тупика"
+                        <a class="aside_news_subelement_ref" href="https://t.me/galkovskygram/592">
+                            <img class="aside_news_image" src="imgs/бесконечный%20тупик.webp" alt="Фото книги">
+                            <span class="aside_news_comment">Набоковские фрагменты "Бесконечного тупика"</span>
                         </a>
                     </li>
                     <li class="aside_news_subelement">
-                        <a href="https://t.me/galkovskygram/587">
-                            <img src="imgs/Крылов.jpg" alt="Фото Крылова">
-                            Мое мнение о Крылове не поменялось.
-                            Я нигде не писал, что он... <br/>
+                        <a class="aside_news_subelement_ref" href="https://t.me/galkovskygram/587">
+                            <img class="aside_news_image" src="imgs/Крылов.jpg" alt="Фото Крылова">
+                            <span class="aside_news_comment"> Мое мнение о Крылове не поменялось.<br/>
+                                Я нигде не писал, что он...
+                            </span>
                         </a>
                     </li>
                 </ul>
             </section>
 
-            <section class="aside_news">
+            <section class="aside_news_section">
                 <div class="aside_news_title">
                     <h2>
                         <em>Лучшие цитаты:</em>
@@ -114,19 +166,19 @@
                         </blockquote>
                     </li>
                     <li class="aside_news_subelement">
-                        <img src="gifs/sticker.gif" alt="Гифка">
+                        <img class="aside_news_image" src="gifs/sticker.gif" alt="Гифка">
                     </li>
                     <li class="aside_news_subelement">
-                        <img src="gifs/sticker2.gif" alt="Гифка">
-                    </li>
-
-                    <li class="aside_news_subelement">
-
-                        <img src="gifs/sticker3.gif" alt="Гифка">
+                        <img class="aside_news_image" src="gifs/sticker2.gif" alt="Гифка">
                     </li>
 
                     <li class="aside_news_subelement">
-                        <img src="gifs/sticker4.gif" alt="Гифка">
+
+                        <img class="aside_news_image" src="gifs/sticker3.gif" alt="Гифка">
+                    </li>
+
+                    <li class="aside_news_subelement">
+                        <img class="aside_news_image" src="gifs/sticker4.gif" alt="Гифка">
                     </li>
 
                 </ul>
@@ -134,7 +186,6 @@
 
         </aside>
     </div>
-    <div class="sidebar"></div>
 
 
 </main>
