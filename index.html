@@ -15,10 +15,12 @@
     <div class="header_box">
         <img src="imgs/фото.jfif" alt="фото Галковского">
         <div class="header_title">
-            <h1>
-                <mark><i> "Вселенная Галковского"</i></mark>
-            </h1>
-            <h2><small> <u>Сайт для поклонников творчества Дмитрия Евгеньевича Галковского</u></small></h2>
+            <span class="main_title">
+                <i> "Вселенная Галковского"</i>
+                </span>
+            <span class="sub_title">
+             <u>Сайт для поклонников творчества Дмитрия Евгеньевича Галковского</u>
+            </span>
         </div>
     </div>
 
@@ -34,86 +36,110 @@
     </nav>
 </header>
 
+
 <main>
 
-    <div class="main_content">
 
-        <form method="get" autocomplete="on">
-            <p>
+    <div class="sidebar"></div>
+
+    <div class="content">
+
+        <div class="main_content">
+
+            <form class="main_content_search" method="get" autocomplete="on">
                 <label for="search"> </label>
-                <textarea name="search" id="search" placeholder="Поиск по первому совпадению" maxlength="200" cols="30"
-                          rows="7"></textarea>
-            </p>
-            <p>
+                <textarea name="search" id="search"
+                          placeholder="Поиск по первому совпадению">
+                    </textarea>
                 <input type="submit" value="Найти">
-            </p>
-        </form>
+            </form>
+
+            <div class="table_box">
+
+                <div class='table_header'>
+                </div>
+                <div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+        <aside>
+            <section class="aside_news">
+                <div class="aside_news_title">
+                    <h2><em>Последние новости, видео, посты</em></h2>
+                </div>
+                <ul class="aside_news_box">
+                    <li class="aside_news_subelement">
+                        <a href="//t.me/galkovskygram/594">
+                            <img src="imgs/Распутин.webp" alt="Фото распутина">
+                            Почему на западе так носятся с Распутиным
+                        </a>
+                    </li>
+                    <li class="aside_news_subelement">
+                        <a href="https://t.me/galkovskygram/592">
+                            <img src="imgs/бесконечный%20тупик.webp" alt="Фото книги">
+                            Набоковские фрагменты "Бесконечного тупика"
+                        </a>
+                    </li>
+                    <li class="aside_news_subelement">
+                        <a href="https://t.me/galkovskygram/587">
+                            <img src="imgs/Крылов.jpg" alt="Фото Крылова">
+                            Мое мнение о Крылове не поменялось.
+                            Я нигде не писал, что он... <br/>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="aside_news">
+                <div class="aside_news_title">
+                    <h2>
+                        <em>Лучшие цитаты:</em>
+                    </h2>
+                </div>
+
+                <ul class="aside_news_box">
+                    <li class="aside_news_subelement">
+                        <blockquote>
+                            "Христианство
+                            это миф касты могильщиков большого
+                            и культурного государства, превратившийся
+                            в монорелигию в результате государственного переворота."
+                            <br/>-- Дмитрий Евгеньевич Галковский
+                        </blockquote>
+                    </li>
+                    <li class="aside_news_subelement">
+                        <img src="gifs/sticker.gif" alt="Гифка">
+                    </li>
+                    <li class="aside_news_subelement">
+                        <img src="gifs/sticker2.gif" alt="Гифка">
+                    </li>
+
+                    <li class="aside_news_subelement">
+
+                        <img src="gifs/sticker3.gif" alt="Гифка">
+                    </li>
+
+                    <li class="aside_news_subelement">
+                        <img src="gifs/sticker4.gif" alt="Гифка">
+                    </li>
+
+                </ul>
+            </section>
+
+        </aside>
     </div>
-
-    <aside>
-        <section class="aside_news">
-            <div class="aside_news_title">
-                <h2><em>Последние новости, видео, посты</em></h2>
-            </div>
-            <ul class="aside_news_box">
-                <li class="aside_news_subelement">
-
-                    <a href="//t.me/galkovskygram/594">
-                        <img src="imgs/Распутин.webp" alt="Фото распутина" width="200">
-                        Почему на западе так носятся с Распутиным
-                    </a>
-                </li>
-                <li class="aside_news_subelement">
-                    <a href="https://t.me/galkovskygram/592">
-                        <img src="imgs/бесконечный%20тупик.webp" alt="Фото книги" width="200">
-                        Набоковские фрагменты "Бесконечного тупика" </a>
-                </li>
-                <li class="aside_news_subelement">
-                    <a href="https://t.me/galkovskygram/587">
-                        <img src="imgs/Крылов.jpg" alt="Фото Крылова" width="200">
-                        Мое мнение о Крылове не поменялось.
-                        Я нигде не писал, что он... <br/>
-                    </a>
-                </li>
-            </ul>
-        </section>
-
-        <section class="aside_quotes">
-            <div class="aside_quotes_title">
-                <h2>
-                    <em>Лучшие цитаты:</em>
-                </h2>
-            </div>
-            <blockquote>
-                "Христианство
-                это миф касты могильщиков большого
-                и культурного государства, превратившийся
-                в монорелигию в результате государственного переворота."
-                <br/>-- Дмитрий Евгеньевич Галковский
-            </blockquote>
-            <div class="aside_quote_gif">
-                <img width="200" src="gifs/sticker.gif" alt="Гифка">
-            </div>
-            <div class="aside_quote_gif">
-
-                <img width="200" src="gifs/sticker2.gif" alt="Гифка">
-            </div>
-
-            <div class="aside_quote_gif">
-
-                <img width="200" src="gifs/sticker3.gif" alt="Гифка">
-            </div>
-
-            <div class="aside_quote_gif">
-                <img width="200" src="gifs/sticker4.gif" alt="Гифка">
-            </div>
-
-        </section>
-
-    </aside>
+    <div class="sidebar"></div>
 
 
 </main>
+
+
 <footer>
     <p><a href="/license">Лицензионное соглашение</a>
         Copyright © 2024. GalkovskyUniverse.com</p>
