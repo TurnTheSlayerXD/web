@@ -80,7 +80,7 @@ header div.header_title span.main_title {
     text-transform: uppercase;
     font-style: italic;
     font-size: 4rem;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1.5;
 
     margin: 0;
@@ -98,7 +98,7 @@ header div.header_title span.main_title {
     header div.header_title span.sub_title {
         font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
         font-size: 2rem;
-        font-weight: 400;
+        font-weight: lighter;
         line-height: 1.5;
 
         flex: 1 0 50%;
@@ -136,7 +136,7 @@ header div.header_title span.main_title {
         list-style: none;
     }
 
-    li.menu_button {
+    li.header_menu_button {
         box-shadow: antiquewhite 2px 2px;
         background-color: antiquewhite;
         font-size: 1.5rem;
@@ -156,7 +156,7 @@ header div.header_title span.main_title {
 
     }
 
-    li.menu_button a {
+    li.header_menu_button a {
         text-decoration: none;
         flex: 1 2;
 
@@ -206,11 +206,11 @@ header div.header_title span.main_title {
         list-style: none;
     }
 
-    li.menu_button {
+    li.header_menu_button {
         box-shadow: lightgoldenrodyellow 2px 2px 2px 2px;
 
         background-color: antiquewhite;
-        font-size: 15px;
+        font-size: 2rem;
 
         margin-top: 6px;
         margin-right: 3px;
@@ -227,7 +227,7 @@ header div.header_title span.main_title {
 
     }
 
-    li.menu_button a {
+    li.header_menu_button a {
         text-decoration: none;
         font-style: oblique;
         display: flex;
@@ -340,7 +340,7 @@ div.aside_news_title {
     display: flex;
     border-radius: 10px;
 
-    background-color: var(--news_title_color);
+    background-color: var(--back_color);
 
     flex-direction: column;
     text-align: center;
