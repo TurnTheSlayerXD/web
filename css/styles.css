@@ -1,6 +1,5 @@
 * {
 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
 
 }
 
@@ -11,46 +10,66 @@
     --content_back_color: #FFF;
 
     --li_border: 1px solid #ccc !important;
-
     background-color: var(--back_color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 10px;
+    
+}
+
+@media screen and (max-width: 700px) {
+    body {
+
+        margin-left: 0;
+        width: 50rem;
+        text-align: center;
+
+    }
 }
 
 header {
     position: sticky;
     background-color: var(--back_color);
     opacity: 0.8;
+
+    display: flex;
     flex-direction: column;
+
     border-width: 0;
     margin-top: 0;
     box-sizing: border-box;
+
+    max-height: 200px;
 }
 
 header div.header_box {
-    flex: 1 1 auto;
     display: flex;
+    flex: 1 0 auto;
+
+
     flex-direction: row;
-    justify-content: center;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    height : 100px;
+    max-height: 200px;
 }
 
 
 header div.header_box img {
+    object-position: left;
+
     object-fit: scale-down;
+    flex : 1 0 auto;
 
-    max-width: 20%;
-    max-height: 100px;
-
+    height: 100%;
 }
 
 header div.header_title {
-    flex: 5;
+    flex: 5 0 auto;
+
 
     text-align: center;
-
-
-    overflow: clip;
-
-    letter-spacing: 1px;
-
     border-color: black;
 
     display: flex;
@@ -60,9 +79,8 @@ header div.header_title {
 
 header div.header_title span.main_title {
 
-
-    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    font-size: 35px;
+    font-family: "Bell MT", serif;
+    font-size: 4rem;
     font-weight: 400;
     line-height: 1.5;
 
@@ -74,13 +92,14 @@ header div.header_title span.main_title {
     flex-direction: column;
     justify-content: center;
 
-
 }
+
+
 
 @media only screen and (orientation: landscape) {
     header div.header_title span.sub_title {
-        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        font-size: 20px;
+        font-family: "Bell MT", serif;
+        font-size: 2rem;
         font-weight: 400;
         line-height: 1.5;
 
@@ -99,12 +118,11 @@ header div.header_title span.main_title {
     }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 701px) {
     nav.menu_header_box {
         height: 40%;
         flex: 1 5 auto;
     }
-
     ul.menu_box {
 
         margin: 0;
@@ -121,7 +139,6 @@ header div.header_title span.main_title {
 
     li.menu_button {
 
-
         background-color: antiquewhite;
         font-size: 1.5rem;
 
@@ -130,7 +147,6 @@ header div.header_title span.main_title {
         margin-left: 3px;
         text-decoration: none;
         flex: 1 200px;
-
 
         display: flex;
         flex-direction: column;
@@ -152,10 +168,31 @@ header div.header_title span.main_title {
 
 }
 
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 700px) {
+
+
+    header div.header_title span.main_title {
+
+        font-family: "Bell MT", serif;
+        font-size: 3rem;
+        font-weight: 400;
+        line-height: 1.5;
+
+        margin: 0;
+
+        flex: 1 0 50%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+
+
     nav.menu_header_box {
         height: 20%;
-        flex: 1 5 auto;
+        flex: 1 0 auto;
     }
 
 
@@ -207,7 +244,7 @@ main {
 div.page_content {
     background-color: var(--back_color);
 
-    flex: 5 1 1000px;
+    flex: 5 1 auto;
 
     display: flex;
     flex-wrap: wrap;
@@ -354,6 +391,9 @@ span.aside_news_comment {
 div.grid_table {
     display: grid;
     border: solid 0.5px #000;
+    margin-left: 10px;
+    margin-right: 10px;
+
 }
 
 
@@ -391,15 +431,16 @@ div.grid_row_name {
     background-color: lightgray;
 }
 
-
-div.grid_row_data_colored {
+div.grid_row_name + div:nth-child(2){
     background-color: lightblue;
     border: solid 0.5px #000;
     text-align: right;
     padding-top: 3px;
     padding-right: 5px;
 }
-div.grid_row_data{
+
+
+div.grid_row_data {
     border: solid 0.5px #000;
     text-align: right;
     padding-top: 3px;
