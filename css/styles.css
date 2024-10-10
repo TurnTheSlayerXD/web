@@ -76,7 +76,7 @@ header div.header_title {
 header div.header_title span.main_title {
 
 
-    font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
+    font-family: "Open Sans", Tofu, serif;
     text-transform: uppercase;
     font-style: italic;
     font-size: 4rem;
@@ -96,7 +96,7 @@ header div.header_title span.main_title {
 
 @media only screen and (orientation: landscape) {
     header div.header_title span.sub_title {
-        font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
+        font-family: "Open Sans", Tofu, serif;
         font-size: 2rem;
         font-weight: lighter;
         line-height: 1.5;
@@ -169,7 +169,7 @@ header div.header_title span.main_title {
 
 @media screen and (max-width: 700px) {
     header div.header_title span.main_title {
-        font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
+        font-family: "Open Sans", Tofu, serif;
         text-transform: uppercase;
 
         font-style: italic;
