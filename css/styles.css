@@ -1,8 +1,3 @@
-* {
-
-
-}
-
 
 :root {
     --back_color: #F0F0F0;
@@ -11,14 +6,13 @@
 
     --li_border: 1px solid #ccc !important;
     background-color: var(--back_color);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Open Sans", sans-serif;
     font-size: 10px;
-    
+
 }
 
 @media screen and (max-width: 700px) {
     body {
-
         margin-left: 0;
         width: 50rem;
         text-align: center;
@@ -26,13 +20,14 @@
     }
 }
 
-header {
+header.galkovsky_header {
     position: sticky;
     background-color: var(--back_color);
     opacity: 0.8;
 
     display: flex;
     flex-direction: column;
+    top: 0;
 
     border-width: 0;
     margin-top: 0;
@@ -51,7 +46,7 @@ header div.header_box {
     padding-left: 5px;
     padding-right: 5px;
 
-    height : 100px;
+    height: 100px;
     max-height: 200px;
 }
 
@@ -60,13 +55,14 @@ header div.header_box img {
     object-position: left;
 
     object-fit: scale-down;
-    flex : 1 0 auto;
+    flex: 1 0 auto;
 
     height: 100%;
 }
 
 header div.header_title {
     flex: 5 0 auto;
+    text-shadow: 1px 1px yellowgreen;
 
 
     text-align: center;
@@ -79,7 +75,10 @@ header div.header_title {
 
 header div.header_title span.main_title {
 
-    font-family: "Bell MT", serif;
+
+    font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
+    text-transform: uppercase;
+    font-style: italic;
     font-size: 4rem;
     font-weight: 400;
     line-height: 1.5;
@@ -95,10 +94,9 @@ header div.header_title span.main_title {
 }
 
 
-
 @media only screen and (orientation: landscape) {
     header div.header_title span.sub_title {
-        font-family: "Bell MT", serif;
+        font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
         font-size: 2rem;
         font-weight: 400;
         line-height: 1.5;
@@ -123,6 +121,7 @@ header div.header_title span.main_title {
         height: 40%;
         flex: 1 5 auto;
     }
+
     ul.menu_box {
 
         margin: 0;
@@ -138,7 +137,7 @@ header div.header_title span.main_title {
     }
 
     li.menu_button {
-
+        box-shadow: antiquewhite 2px 2px;
         background-color: antiquewhite;
         font-size: 1.5rem;
 
@@ -169,14 +168,15 @@ header div.header_title span.main_title {
 }
 
 @media screen and (max-width: 700px) {
-
-
     header div.header_title span.main_title {
+        font-family: "Edu_AU_VIC_WA_NT_Guides variant0", Tofu, serif;
+        text-transform: uppercase;
 
-        font-family: "Bell MT", serif;
+        font-style: italic;
+        white-space: initial;
         font-size: 3rem;
-        font-weight: 400;
-        line-height: 1.5;
+        font-weight: 900;
+        line-height: normal;
 
         margin: 0;
 
@@ -187,7 +187,6 @@ header div.header_title span.main_title {
         justify-content: center;
 
     }
-
 
 
     nav.menu_header_box {
@@ -208,6 +207,7 @@ header div.header_title span.main_title {
     }
 
     li.menu_button {
+        box-shadow: lightgoldenrodyellow 2px 2px 2px 2px;
 
         background-color: antiquewhite;
         font-size: 15px;
@@ -229,6 +229,7 @@ header div.header_title span.main_title {
 
     li.menu_button a {
         text-decoration: none;
+        font-style: oblique;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -267,7 +268,6 @@ div.main_content {
     background-color: var(--content_back_color);
     display: flex;
     flex-direction: column;
-
 
     width: 70%;
     padding-left: 0;
@@ -331,6 +331,8 @@ aside.main_aside_group {
 section.aside_news_section {
     display: flex;
     flex-direction: column;
+    background-color: oldlace;
+
 }
 
 
@@ -344,6 +346,7 @@ div.aside_news_title {
     text-align: center;
     border: var(--li_border);
 
+    box-shadow: peachpuff 3px 3px 3px 3px;
 }
 
 ul.aside_news_box {
@@ -353,6 +356,7 @@ ul.aside_news_box {
 
     padding-right: 0;
     padding-left: 20px;
+
 }
 
 li.aside_news_subelement {
@@ -431,7 +435,7 @@ div.grid_row_name {
     background-color: lightgray;
 }
 
-div.grid_row_name + div:nth-child(2){
+div.grid_table > div:nth-child(7n + 1) {
     background-color: lightblue;
     border: solid 0.5px #000;
     text-align: right;
