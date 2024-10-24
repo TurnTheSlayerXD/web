@@ -391,55 +391,52 @@ span.aside_news_comment {
 }
 
 
-
-
 .wrapper {
-
-
-
     display: grid;
-    grid-template-rows: repeat(2, auto);
-    grid-template-columns: repeat(1, auto);
-
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(5, auto);
     background-color: #fff;
     color: #444;
+
 }
 
-thead{
-    background-color: lightseagreen;
-    display: grid;
+.wrapper thead {
+    grid-column: 1 / 6;
+    background-color: gray;
+    justify-content: center;
+    display: flex;
 }
 
-thead tr{
-    display: grid;
+
+.wrapper tbody {
+    grid-column: 1 / 6;
+    grid-row: 2 / 9;
+    display: contents;
 }
 
-
-.row {
-    display: grid;
-    grid-column: 0 / 1;
-    grid-template-columns: 0.5fr repeat(4, auto);
+.wrapper tbody tr {
+    display: contents;
 }
 
-.wrapper .row:nth-child(2n){
-    background-color: lightblue;
+.wrapper tbody tr:nth-child(2n ) {
+    background-color: blue;
 }
 
-.box {
-    border: 1px outset black;
-    padding: 10px;
-}
-
-.wrapper .row:nth-child(1){
+.wrapper tbody tr:nth-child(1) {
     background-color: gray;
 }
 
 
-.row .box:nth-child(1){
-    background-color: gray;
+.wrapper tbody tr:nth-child(2n) {
+    background-color: blue;
 }
 
+.wrapper tbody tr td{
+    background-color: inherit;
+    border: 1px solid  black;
+}
 
-
-
+.wrapper tbody tr td:nth-child(1){
+    background-color: gray;
+}
 
