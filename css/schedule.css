@@ -1,0 +1,109 @@
+
+.schedule_table {
+    display: grid;
+    grid-template-rows: repeat(8, 50px);
+    grid-template-columns: 10em repeat(7, auto);
+    background-color: #fff;
+    color: #444;
+}
+
+.schedule_table thead {
+    display: contents;
+}
+
+.schedule_table thead tr {
+    grid-column: 1 / 9;
+    background-color: gray;
+    text-align: center;
+    display: contents;
+}
+
+.schedule_table thead tr th {
+    grid-column: 1 / 9;
+    background-color: inherit;
+    border: 1px solid black;
+    padding-top: 6px;
+}
+
+.schedule_table thead tr td {
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.schedule_table tbody {
+    display: contents;
+}
+
+.schedule_table tbody tr {
+    grid-column: 1 / 9;
+    background-color: gray;
+    text-align: center;
+    display: contents;
+}
+
+
+.schedule_table tbody tr td {
+    border: 1px solid black;
+}
+
+
+.table_input_form {
+    box-sizing: border-box;
+    width: inherit;
+    height: 100%;
+    background-color: inherit;
+    color: white;
+    border-radius: 0;
+}
+.table_input_form label{
+    height: inherit;
+}
+
+
+
+
+
+.time_input {
+    width: 100%;
+    box-sizing: border-box;
+    border-width: 0;
+    text-align: center;
+    background-color: inherit;
+    block-size: inherit;
+
+}
+
+
+.task_input {
+    width: 100%;
+    box-sizing: border-box;
+    border-width: 0;
+
+    text-align: center;
+    block-size: inherit;
+
+    border-radius: 0;
+}
+
+
+.selected_input {
+    background-color: gray;
+}
+
+.selected_cross {
+    background-color: red;
+}
+
+.custom_date_unput{
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+
+
+
+
+
+
