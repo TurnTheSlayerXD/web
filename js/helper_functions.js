@@ -61,3 +61,7 @@ function rotateAroundIndex(arr, pos) {
     console.assert(pos < arr.length)
     arr.splice(0, arr.length, arr.slice(0, pos).concat(arr.slice(pos, arr.length)))
 }
+
+function getTimeFromLine(line) {
+    return [...line.getElementsByClassName('time_input')][0].value
+}
