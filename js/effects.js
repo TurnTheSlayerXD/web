@@ -16,8 +16,12 @@ function addSelectedTaskEvent() {
 }
 
 
+
+
+
 function addLightningEffect(cssClass) {
-    const elems = document.getElementsByClassName('task_input')
+    const elems =
+        [...document.getElementsByClassName('task_input')].concat([...document.getElementsByClassName('time_input')])
     for (const e of elems) {
         e.addEventListener('mouseenter', (event) => {
             const eventBut = event.currentTarget
