@@ -1,0 +1,118 @@
+.loader {
+    width: 70px;
+    height: 26px;
+    background: #d0af03;
+    border-radius: 50px;
+    --c: no-repeat radial-gradient(farthest-side, #000 92%, #0000);
+    --s: 18px 18px;
+    -webkit-mask: var(--c) left 4px top 50%,
+    var(--c) center,
+    var(--c) right 4px top 50%,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: l1 1.5s infinite;
+}
+
+@keyframes l1 {
+    0% {
+        -webkit-mask-size: 0 0, 0 0, 0 0, auto
+    }
+    16.67% {
+        -webkit-mask-size: var(--s), 0 0, 0 0, auto
+    }
+    33.33% {
+        -webkit-mask-size: var(--s), var(--s), 0 0, auto
+    }
+    50% {
+        -webkit-mask-size: var(--s), var(--s), var(--s), auto
+    }
+    66.67% {
+        -webkit-mask-size: 0 0, var(--s), var(--s), auto
+    }
+    83.33% {
+        -webkit-mask-size: 0 0, 0 0, var(--s), auto
+    }
+    100% {
+        -webkit-mask-size: 0 0, 0 0, 0 0, auto
+    }
+}
+
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid black;
+    border-bottom: 10px solid transparent;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 10px solid black;
+    border-bottom: 10px solid transparent;
+}
+
+.forum_section {
+    display: grid;
+    font-size: 1em;
+
+    grid-template-rows: 0.3fr 0.4fr 0.3fr;
+}
+
+.forum_post {
+    display: grid;
+    grid-template-columns: 0.3fr 0.2fr 0.5fr;
+}
+
+.forum_post_header {
+    grid-column: 1 / 3;
+}
+
+.forum_post_body {
+    grid-column: 3 / 4;
+}
+
+.forum_post_comment_section {
+    display: contents;
+}
+
+.forum_post_comment {
+    display: contents;
+}
+
+.forum_post_comment_header {
+    grid-column: 2 / 3;
+}
+
+.forum_post_comment_body {
+    grid-column: 3 / 4;
+}
+
+
+.forum_body {
+    display: contents;
+}
+
+
+.forum_scroller_section {
+}
+
+
+.forum_posts_section {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.forum_post_comment_img {
+    width: 30px;
+}
+
+
+.clicked_comment {
+    background-color: red;
+}
+
+
