@@ -7,30 +7,62 @@ window.addEventListener("load", () => {
         sessionStorage.setItem('curPageId', "1")
         const postIds = getPostIdsForPage(sessionStorage.getItem("curPageId"))
         for (const id of postIds) {
-            displayEmpty(id).then(() => addEventForCommentButton(id))
-
-            fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then(resp => resp.json()).then(replaceLoaderByRealPost)
+            displayEmpty(id)
+            fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+                .then(resp => resp.json())
+                .then(replaceLoaderByRealPost).then(_ => addEventForCommentButton(id))
         }
 
 
     }
 )
 
+
+function removeCommentLoader(postNode) {
+    postNode.removeChild(postNode.getElementsByClassName("loader")[0])
+}
+
+
+async function renderComment(commentjson, postNode) {
+    const html = '<div class="forum_post_comment_header"></div>' +
+        '<div class="forum_post_comment_body"></div>'
+    const elem = document.createElement("div")
+    elem.classList.add("forum_post_comment")
+
+    elem.innerHTML = html
+
+    commentjson.body = commentjson.body.replaceAll("\n", "<br>")
+
+    elem.getElementsByClassName("forum_post_comment_header")[0].innerHTML = "Name: " +
+        commentjson.name + "<br>" + "Email: " + commentjson.email
+
+    elem.getElementsByClassName("forum_post_comment_body")[0].innerHTML = commentjson.body
+
+    postNode.append(elem)
+}
+
+
 async function addEventForCommentButton(id) {
+
+
     const post = document.getElementById(`post_${id}`).getElementsByClassName("forum_post_comment_img")[0]
 
-    post.addEventListener("", (event) => {
-        but = event.target
+    post.addEventListener("click", (event) => {
+        const but = event.target
+        const section = but.parentElement.getElementsByClassName("forum_post_comment_section")[0]
         if (!but.classList.contains("clicked_comment")) {
             but.classList.add("clicked_comment")
-
-
-            for(const com in )
-
+            fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
+                .then(resp => resp.json()).then(async comms => {
+                console.log(comms)
+                for await (const com of comms) {
+                    renderComment(com, section)
+                }
+            })
 
         } else {
             but.classList.remove("clicked_comment")
-            but.replaceChildren()
+            section.replaceChildren()
         }
 
     })
@@ -82,9 +114,6 @@ function getPostIdsForPage(pageId) {
     return allPostIds.slice(5 * (pageId - 1) + 1, 5 * (pageId - 1) + 6)
 }
 
-
-async function fetchPostsByIds(postIds) {
-}
 
 
 
