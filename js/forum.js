@@ -1,21 +1,59 @@
 const maxPostId = 100
 
 const allPostIds = shuffle(range(1, maxPostId + 1))
+sessionStorage.setItem('curPageId', "1")
 
 
 window.addEventListener("load", () => {
-        sessionStorage.setItem('curPageId', "1")
-        const postIds = getPostIdsForPage(sessionStorage.getItem("curPageId"))
-        for (const id of postIds) {
-            displayEmpty(id)
-            fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-                .then(resp => resp.json())
-                .then(replaceLoaderByRealPost).then(_ => addEventForCommentButton(id))
-        }
-
-
+        addEventsForPageScrollerButtons()
+        mainCycle()
     }
 )
+
+function drawCurpageNumber() {
+    document.getElementsByClassName('forum_scroller_curpage')[0].innerText = sessionStorage.getItem('curPageId')
+}
+
+
+function replaceScrollerPageId(newPageId) {
+    const elem = document.getElementsByClassName('forum_scroller_section')[0]
+    elem.getElementsByClassName('forum_scroller_curpage')[0].innerText = newPageId
+}
+
+function addEventsForPageScrollerButtons() {
+    document.getElementsByClassName('forum_prevpage_button')[0].addEventListener('click', (event) => {
+        event.preventDefault()
+        const curPageId = Number(sessionStorage.getItem('curPageId'))
+        if (1 >= curPageId)
+            return;
+        sessionStorage.setItem('curPageId', curPageId - 1)
+        mainCycle()
+    })
+    document.getElementsByClassName('forum_nextpage_button')[0].addEventListener('click', (event) => {
+        event.preventDefault()
+        const curPageId = Number(sessionStorage.getItem('curPageId'))
+        if (curPageId >= 100)
+            return;
+        sessionStorage.setItem('curPageId', curPageId + 1)
+        mainCycle()
+    })
+}
+
+
+function mainCycle() {
+    document.getElementsByClassName("forum_posts_section")[0].replaceChildren()
+
+    drawCurpageNumber()
+    const curPage = sessionStorage.getItem("curPageId")
+    const postIds = getPostIdsForPage(curPage)
+    for (const id of postIds) {
+        drawLoaderForPost(id).then(() => {
+            fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+                .then(resp => resp.json())
+                .then(drawLoaderByRealPost).then(_ => addEventForCommentButton(id))
+        });
+    }
+}
 
 
 function removeCommentLoader(postNode) {
@@ -23,7 +61,15 @@ function removeCommentLoader(postNode) {
 }
 
 
-async function renderComment(commentjson, postNode) {
+async function drawLoaderForComment(commentSection) {
+    const loader = document.createElement("div")
+    loader.classList.add("loader")
+    commentSection.append(loader)
+}
+
+
+async function drawComment(commentjson, commentSection) {
+
     const html = '<div class="forum_post_comment_header"></div>' +
         '<div class="forum_post_comment_body"></div>'
     const elem = document.createElement("div")
@@ -38,12 +84,11 @@ async function renderComment(commentjson, postNode) {
 
     elem.getElementsByClassName("forum_post_comment_body")[0].innerHTML = commentjson.body
 
-    postNode.append(elem)
+    commentSection.append(elem)
 }
 
 
 async function addEventForCommentButton(id) {
-
 
     const post = document.getElementById(`post_${id}`).getElementsByClassName("forum_post_comment_img")[0]
 
@@ -51,14 +96,15 @@ async function addEventForCommentButton(id) {
         const but = event.target
         const section = but.parentElement.getElementsByClassName("forum_post_comment_section")[0]
         if (!but.classList.contains("clicked_comment")) {
-            but.classList.add("clicked_comment")
+            but.classList.add("clicked_comment");
+            drawLoaderForComment(section)
             fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
-                .then(resp => resp.json()).then(async comms => {
-                console.log(comms)
-                for await (const com of comms) {
-                    renderComment(com, section)
+                .then(resp => resp.json()).then(comms => {
+                removeCommentLoader(section)
+                for (const com of comms) {
+                    drawComment(com, section)
                 }
-            })
+            });
 
         } else {
             but.classList.remove("clicked_comment")
@@ -69,7 +115,7 @@ async function addEventForCommentButton(id) {
 }
 
 
-async function replaceLoaderByRealPost(postjson) {
+async function drawLoaderByRealPost(postjson) {
     const html = '<div class="forum_post_header">\n' +
         '    </div>\n' +
         '    <div class="forum_post_body">\n' +
@@ -92,7 +138,7 @@ async function replaceLoaderByRealPost(postjson) {
 }
 
 
-async function displayEmpty(postId) {
+async function drawLoaderForPost(postId) {
 
     const body = document.getElementsByClassName("forum_posts_section")[0]
     const post = document.createElement("div")
@@ -113,6 +159,10 @@ function getPostIdsForPage(pageId) {
     console.assert(0 < pageId < 101)
     return allPostIds.slice(5 * (pageId - 1) + 1, 5 * (pageId - 1) + 6)
 }
+
+
+
+
 
 
 

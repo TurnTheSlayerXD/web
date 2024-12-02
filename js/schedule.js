@@ -2,10 +2,6 @@ const pathToTableBody = "body > main > table > tbody"
 const pathToTable = "body > main > table"
 
 
-function addGroupOfEvents(){
-
-}
-
 
 
 function getCrossAxisElems(inputCell) {
