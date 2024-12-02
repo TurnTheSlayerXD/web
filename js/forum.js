@@ -1,12 +1,23 @@
-const maxPostId = 100
+let allPostIds = []
 
-const allPostIds = shuffle(range(1, maxPostId + 1))
-sessionStorage.setItem('curPageId', "1")
+
+async function fetchViablePostIds() {
+
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+
+    const arr = [...await res.json()]
+
+    return arr.map(e => e.id)
+}
 
 
 window.addEventListener("load", () => {
+        sessionStorage.setItem('curPageId', "1")
         addEventsForPageScrollerButtons()
-        mainCycle()
+        fetchViablePostIds().then((res) => {
+            allPostIds = shuffle(res)
+            mainCycle()
+        })
     }
 )
 
@@ -21,7 +32,7 @@ function replaceScrollerPageId(newPageId) {
 }
 
 function addEventsForPageScrollerButtons() {
-    document.getElementsByClassName('forum_prevpage_button')[0].addEventListener('click', (event) => {
+    document.getElementsByClassName('forum_scroller_prevpage')[0].addEventListener('click', (event) => {
         event.preventDefault()
         const curPageId = Number(sessionStorage.getItem('curPageId'))
         if (1 >= curPageId)
@@ -29,7 +40,7 @@ function addEventsForPageScrollerButtons() {
         sessionStorage.setItem('curPageId', curPageId - 1)
         mainCycle()
     })
-    document.getElementsByClassName('forum_nextpage_button')[0].addEventListener('click', (event) => {
+    document.getElementsByClassName('forum_scroller_nextpage')[0].addEventListener('click', (event) => {
         event.preventDefault()
         const curPageId = Number(sessionStorage.getItem('curPageId'))
         if (curPageId >= 100)
@@ -40,9 +51,8 @@ function addEventsForPageScrollerButtons() {
 }
 
 
-function mainCycle() {
+async function mainCycle() {
     document.getElementsByClassName("forum_posts_section")[0].replaceChildren()
-
     drawCurpageNumber()
     const curPage = sessionStorage.getItem("curPageId")
     const postIds = getPostIdsForPage(curPage)
@@ -156,8 +166,12 @@ async function drawLoaderForPost(postId) {
 
 
 function getPostIdsForPage(pageId) {
-    console.assert(0 < pageId < 101)
-    return allPostIds.slice(5 * (pageId - 1) + 1, 5 * (pageId - 1) + 6)
+
+    let l = 5 * (pageId - 1) + 1
+    l = l > allPostIds.length ? allPostIds.length : l
+    let r = 5 * (pageId - 1) + 6
+    r = r > allPostIds.length ? allPostIds.length : r
+    return allPostIds.slice(l, r)
 }
 
 
