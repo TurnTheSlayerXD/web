@@ -10,7 +10,6 @@
     }
     curPageButton.classList.remove('header_menu_button')
     curPageButton.classList.add('current_header_menu_button')
-
     for (const menuButton of menuButtons) {
         menuButton.addEventListener("mouseenter", (event) => {
                 const eventBut = event.currentTarget
@@ -27,7 +26,7 @@
     }
 })();
 
-(async function solveColorForAsideNews() {
+(function solveColorForAsideNews() {
 
     const newsBoxes = [...document.getElementsByClassName('aside_news_subelement')]
 

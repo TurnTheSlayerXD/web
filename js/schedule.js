@@ -55,10 +55,7 @@ function buildTableFromWeekData(data) {
 
         for (const dt of data.slice(l, r)) {
             const day_index = transformDateAsDigit(dt.date)
-
-            // day index + 1 because there is a time column
             const tg = table_row_node.children[day_index + 1].getElementsByClassName('task_input')[0]
-            console.log(tg)
             tg.innerText = dt.content
         }
         table_body_node.appendChild(table_row_node)
@@ -79,24 +76,11 @@ function createHeaderNode() {
     const table_header_node = document.createElement('thead')
 
 
-    table_header_node.innerHTML =
-        '        <tr>\n' +
-        '            <th class=table_header>\n' +
-        '            </th>\n' +
-        '        </tr>\n' +
-        '        <tr>\n' +
-        '            <td>Время</td>\n' +
-        '            <td>Понедельник</td>\n' +
-        '            <td>Вторник</td>\n' +
-        '            <td>Среда</td>\n' +
-        '            <td>Четверг</td>\n' +
-        '            <td>Пятница</td>\n' +
-        '            <td>Суббота</td>\n' +
-        '            <td>Воскресенье</td>\n' +
-        '        </tr>\n'
+    table_header_node.innerHTML = document.getElementById('template_days_of_week').innerHTML
 
     const el = table_header_node.querySelector("tr > th")
     const dateRange = getWeekDatesFromDate(new Date(sessionStorage.getItem('currentWeek')))
+    console.log(dateRange)
     const date_0 = dateRange[0]
     const date_n = dateRange[dateRange.length - 1]
     el.innerText = `Schedule from ${date_0} to ${date_n}`
@@ -109,11 +93,8 @@ function createRowForTable(time = '') {
     const table_row_node = document.createElement('tr')
     const table_time_node = document.createElement('td')
 
-    table_time_node.innerHTML = '<form class="table_input_form" method="get" autocomplete="on">\n' +
-        '                    <label>\n' +
-        '                        <textarea class="time_input"> </textarea>' +
-        '                    </label>\n' +
-        '                </form>\n'
+
+    table_time_node.innerHTML = document.getElementById('template_time').innerHTML
     table_time_node
         .getElementsByClassName('time_input')[0]
         .innerText = time
@@ -121,16 +102,13 @@ function createRowForTable(time = '') {
     table_row_node.appendChild(table_time_node)
     for (let i = 0; i < 7; i += 1) {
         const table_column_node = document.createElement('td')
-        table_column_node.innerHTML =
-            '                <form class="table_input_form" method="get" autocomplete="on">\n' +
-            '                    <label>\n' +
-            '                        <textarea class="task_input"> </textarea>' +
-            '                    </label>\n' +
-            '                </form>\n'
+        table_column_node.innerHTML = document.getElementById('template_task').innerHTML
+
         table_column_node.getElementsByClassName('task_input')[0]
             .innerText = ''
         table_row_node.appendChild(table_column_node)
     }
+
     return table_row_node
 
 }

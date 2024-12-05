@@ -8,11 +8,16 @@ function subtractDaysFromDate(date, n_days) {
 }
 
 function transformDateAsString(date) {
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    let day = date.getDate()
+    if (day < 10)
+        day = `0${day}`
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${day}`
 }
 
 function transformDateAsDigit(date) {
     const i = date.getDay()
+    const s = `day = ${i}`
+    console.log(s)
     if (i === 0)
         return 6
     return i - 1
