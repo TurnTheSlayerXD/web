@@ -17,7 +17,6 @@ function transformDateAsString(date) {
 function transformDateAsDigit(date) {
     const i = date.getDay()
     const s = `day = ${i}`
-    console.log(s)
     if (i === 0)
         return 6
     return i - 1

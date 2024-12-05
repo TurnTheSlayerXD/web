@@ -39,6 +39,8 @@ function getWeekDataFromStorage(date) {
         }
     }
 
+    console.log(storage)
+
     return storage
 }
 
@@ -47,7 +49,16 @@ function buildTableFromWeekData(data) {
     const table_header_node = createHeaderNode()
     const table_body_node = document.createElement('tbody')
 
-    data.sort((a, b) => a.time === b.time ? a.date > b.date : a.time > b.time)
+    data.sort((a, b) => {
+        if (a.time > b.time) {
+            return 1
+        } else if (a.time < b.time) {
+            return -1
+        } else {
+            return a.date > b.date ? 1 : -1
+        }
+    })
+
     for (const time of new Set(data.map(d => d.time))) {
         const table_row_node = createRowForTable(time)
         const l = data.findIndex(e => e.time === time)
@@ -184,10 +195,13 @@ function getTaskValuesFromTr(tr) {
     return [...tr.getElementsByClassName('task_input')].map(t => t.value)
 }
 
+function isEmptyString(str) {
+    return str.split('').every(t => t === ' ') || str === ''
+}
 
 function ifNoEmptyLineAddEmptyLine(tbody) {
     const last = tbody.lastChild
-    if (!(getTaskValuesFromTr(last).every(t => t === '') && getTimeValueFromTr(last) === '')) {
+    if (!(getTaskValuesFromTr(last).every(isEmptyString) && isEmptyString(getTimeValueFromTr(last)))) {
         addEmptyLineToTable(tbody)
         console.log('Empty line adding')
     }
@@ -248,13 +262,10 @@ function getDataFromTableInstance() {
             .map(t => t.getElementsByClassName('task_input')[0])
 
         const targetTime = [...line.children][0].getElementsByClassName('time_input')[0]
-        console.log(`${targetTime.value} - target time)`)
 
         for (let i = 0; i < 7; i += 1) {
-            console.log(cells[i].value.split('').some(t => t !== ' '))
-            if (cells[i].value.split('').some(t => t !== ' ')) {
+            if (!isEmptyString(cells[i].value)) {
                 const dt = {date: dates[i], time: targetTime.value, content: cells[i].value}
-                console.log(cells[i].value)
                 data.push(dt)
             }
         }
@@ -268,11 +279,15 @@ function updateStorage() {
     const tableData = getDataFromTableInstance()
 
     const before = getWeekDataFromStorage(date)
+
+    console.log(tableData)
     const groupedData = Object.groupBy(tableData, e => e.date)
     for (const key in groupedData) {
         localStorage.setItem(key, JSON.stringify(groupedData[key]))
     }
     const after = getWeekDataFromStorage(date)
+
+
 }
 
 
