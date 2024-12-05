@@ -2,13 +2,11 @@ const pathToTableBody = "body > main > table > tbody"
 const pathToTable = "body > main > table"
 
 
-
-
 function getCrossAxisElems(inputCell) {
 
     const curTd = inputCell.parentNode.parentNode.parentNode
     const curLine = curTd.parentNode
-    const targetTime = curLine.firstElementChild.querySelector("form > label > input")
+    const targetTime = curLine.firstElementChild.querySelector("form > label > textarea")
 
 
     const index = [...curLine.children].findIndex((n) => n === curTd)
@@ -49,21 +47,19 @@ function buildTableFromWeekData(data) {
     const table_header_node = createHeaderNode()
     const table_body_node = document.createElement('tbody')
 
-
     data.sort((a, b) => a.time === b.time ? a.date > b.date : a.time > b.time)
-
     for (const time of new Set(data.map(d => d.time))) {
         const table_row_node = createRowForTable(time)
         const l = data.findIndex(e => e.time === time)
         const r = data.findLastIndex(e => e.time === time) + 1
 
-
         for (const dt of data.slice(l, r)) {
             const day_index = transformDateAsDigit(dt.date)
 
             // day index + 1 because there is a time column
-            const tg = table_row_node.children[day_index + 1].querySelector('form > label > input')
-            tg.value = dt.content
+            const tg = table_row_node.children[day_index + 1].getElementsByClassName('task_input')[0]
+            console.log(tg)
+            tg.innerText = dt.content
         }
         table_body_node.appendChild(table_row_node)
     }
@@ -74,6 +70,8 @@ function buildTableFromWeekData(data) {
     table_node.appendChild(table_header_node)
     table_node.appendChild(table_body_node)
     getElementByXpath('/html/body/main').appendChild(table_node)
+
+    document.dispatchEvent(new Event('sortEvent'))
 
 }
 
@@ -113,12 +111,12 @@ function createRowForTable(time = '') {
 
     table_time_node.innerHTML = '<form class="table_input_form" method="get" autocomplete="on">\n' +
         '                    <label>\n' +
-        '                        <input class="time_input">\n' +
+        '                        <textarea class="time_input"> </textarea>' +
         '                    </label>\n' +
         '                </form>\n'
     table_time_node
         .getElementsByClassName('time_input')[0]
-        .setAttribute('value', time)
+        .innerText = time
 
     table_row_node.appendChild(table_time_node)
     for (let i = 0; i < 7; i += 1) {
@@ -126,11 +124,11 @@ function createRowForTable(time = '') {
         table_column_node.innerHTML =
             '                <form class="table_input_form" method="get" autocomplete="on">\n' +
             '                    <label>\n' +
-            '                        <input class="task_input" value=""/>\n' +
+            '                        <textarea class="task_input"> </textarea>' +
             '                    </label>\n' +
             '                </form>\n'
-        table_column_node.getElementsByClassName('task_input')[0].setAttribute('value',
-            '')
+        table_column_node.getElementsByClassName('task_input')[0]
+            .innerText = ''
         table_row_node.appendChild(table_column_node)
     }
     return table_row_node
@@ -144,27 +142,27 @@ function addEmptyLineToTable(tbody) {
 
 function onTimeChangeEvent(event) {
     const time = isCorrectTimeInput(event.target.value)
-    event.target.value = time
     if (time) {
         updateStorage()
-        removeEnterPressDefaultBehaviour()
-        addSelectedTaskEvent()
-        addTaskChangeEvents()
-    }
-    const sortEvent = new Event('sortEvent')
-    event.target.dispatchEvent(sortEvent)
-    ifNoEmptyLineAddEmptyLine(document.querySelector(pathToTableBody))
+        const sortEvent = new Event('sortEvent')
+        event.target.dispatchEvent(sortEvent)
+        ifNoEmptyLineAddEmptyLine(document.querySelector(pathToTableBody))
 
-    const path = `${pathToTableBody} > tr:nth-last-child(1)`
-    const last = document.querySelector(path)
+        const path = `${pathToTableBody} > tr:nth-last-child(1)`
+        const last = document.querySelector(path)
 
-    const new_time = [...last.getElementsByClassName('time_input')][0]
-    new_time.addEventListener('change', onTimeChangeEvent)
-    new_time.addEventListener('sortEvent', onSortEvent)
-    const tasks = [...last.getElementsByClassName('task_input')]
-    for (const a of tasks) {
-        a.addEventListener('change', onTaskChange)
+        const new_time = [...last.getElementsByClassName('time_input')][0]
+        new_time.addEventListener('change', onTimeChangeEvent)
+        new_time.addEventListener('sortEvent', onSortEvent)
+        const tasks = [...last.getElementsByClassName('task_input')]
+        for (const a of tasks) {
+            a.addEventListener('change', onTaskChange)
+        }
+    } else {
+        event.target.value = ''
+        event.target.innerText = ''
     }
+
 
 }
 
@@ -179,6 +177,7 @@ function addTimeChangeEvent() {
 
 
 function reorder() {
+
     const tbody = document.querySelector(pathToTableBody)
     const lines = [...tbody.children]
 
@@ -195,7 +194,7 @@ function reorder() {
     tbody.replaceChildren(...lines)
 }
 
-function onSortEvent(event) {
+function onSortEvent() {
     reorder()
 }
 
@@ -210,7 +209,6 @@ function getTaskValuesFromTr(tr) {
 
 function ifNoEmptyLineAddEmptyLine(tbody) {
     const last = tbody.lastChild
-    console.log(last)
     if (!(getTaskValuesFromTr(last).every(t => t === '') && getTimeValueFromTr(last) === '')) {
         addEmptyLineToTable(tbody)
         console.log('Empty line adding')
@@ -238,11 +236,14 @@ function onWeekChange(event) {
 (function addWeekChange() {
     const el = getElementByXpath('/html/body/main/p/input')
     el.addEventListener('change', onWeekChange)
+    document.addEventListener('sortEvent', onSortEvent)
 })();
 
 
 function onTaskChange(event) {
-    console.log('Task change happened')
+
+    event.target.innerText = event.target.value
+
     updateStorage()
     ifNoEmptyLineAddEmptyLine(document.querySelector(pathToTableBody))
 }
@@ -257,6 +258,7 @@ function addTaskChangeEvents() {
 
 
 function getDataFromTableInstance() {
+
     const tbody = document.querySelector(pathToTableBody)
 
     const dates = getWeekDatesFromDate(new Date(sessionStorage.getItem('currentWeek')))
@@ -265,12 +267,16 @@ function getDataFromTableInstance() {
     for (const line of [...tbody.children]) {
 
         const cells = [...line.children].slice(1,)
-            .map(t => t.querySelector("form > label > input"))
-        const [_, targetTime] = getCrossAxisElems(cells[0])
+            .map(t => t.getElementsByClassName('task_input')[0])
+
+        const targetTime = [...line.children][0].getElementsByClassName('time_input')[0]
+        console.log(`${targetTime.value} - target time)`)
 
         for (let i = 0; i < 7; i += 1) {
-            if (cells[i].value !== '') {
+            console.log(cells[i].value.split('').some(t => t !== ' '))
+            if (cells[i].value.split('').some(t => t !== ' ')) {
                 const dt = {date: dates[i], time: targetTime.value, content: cells[i].value}
+                console.log(cells[i].value)
                 data.push(dt)
             }
         }
