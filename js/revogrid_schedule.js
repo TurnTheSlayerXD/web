@@ -1,4 +1,5 @@
-import {defineCustomElements} from "revogrid";
+// import {defineCustomElements} from "revogrid";
+import {defineCustomElements} from "@revolist/revogrid/loader";
 
 await defineCustomElements();
 
