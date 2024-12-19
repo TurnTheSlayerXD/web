@@ -4,7 +4,8 @@
   "description": "Бажура Андрей Эдуардович группа М3313",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "echo \"Hello world\" && exit 0"
   },
   "author": "",
   "license": "ISC",
